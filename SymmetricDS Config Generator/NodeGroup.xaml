@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SymmetricDS_Config_Generator"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="SymmetricDS_Config_Generator.NodeGroup"
+        mc:Ignorable="d"
+        Title="Node Group" Height="135.327" Width="820.329"
+        Icon="loable tech logo.ico"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"     MinWidth="350"    
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="label" Content="Node Group :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtGroup" Height="23" Margin="103,11,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>        
+        <Button x:Name="btnAdd" Content="Add" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Bottom" Click="BtnAdd_Click"/>
+    </Grid>
+</Window>

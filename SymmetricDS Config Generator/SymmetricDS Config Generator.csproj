@@ -64,6 +64,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Router.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Trigger.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NodeGroupLink.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NodeGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Channel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Engine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,12 +96,36 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="models\DBDriver.cs" />
+    <Compile Include="Router.xaml.cs">
+      <DependentUpon>Router.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Trigger.xaml.cs">
+      <DependentUpon>Trigger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NodeGroupLink.xaml.cs">
+      <DependentUpon>NodeGroupLink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NodeGroup.xaml.cs">
+      <DependentUpon>NodeGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Channel.xaml.cs">
+      <DependentUpon>Channel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Engine.xaml.cs">
+      <DependentUpon>Engine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\AppState.cs" />
+    <Compile Include="models\Engine.cs" />
+    <Compile Include="models\GroupLink.cs" />
+    <Compile Include="models\Router.cs" />
+    <Compile Include="models\Trigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

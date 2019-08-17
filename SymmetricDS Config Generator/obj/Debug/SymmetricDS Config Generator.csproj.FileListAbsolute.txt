@@ -20,3 +20,37 @@ C:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug
 C:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.csproj.CopyComplete
 C:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.exe
 C:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.pdb
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\SymmetricDS Config Generator.exe.config
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\SymmetricDS Config Generator.exe
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\SymmetricDS Config Generator.pdb
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\MaterialDesignColors.dll
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\MaterialDesignColors.pdb
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\MainWindow.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\App.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator_MarkupCompile.cache
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator_MarkupCompile.lref
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\App.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\MainWindow.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.g.resources
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS_Config_Generator.Properties.Resources.resources
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.csproj.GenerateResource.cache
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.csproj.CoreCompileInputs.cache
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.csproj.CopyComplete
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.exe
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.pdb
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Engine.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Engine.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Channel.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Channel.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\NodeGroupLink.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\NodeGroup.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\NodeGroupLink.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\NodeGroup.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Trigger.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Router.g.cs
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Router.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Trigger.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.csprojAssemblyReference.cache

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\
 SymmetricDS_Config_Generator
 none
 false
 DEBUG;TRACE
-C:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\App.xaml
-11151548125
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\App.xaml
+71315288248
 
-5-2017746502
-15-1282273804
-MainWindow.xaml;
+17-973334063
+15-380170064
+Router.xaml;Trigger.xaml;NodeGroupLink.xaml;NodeGroup.xaml;Channel.xaml;Engine.xaml;MainWindow.xaml;
 
 False
 

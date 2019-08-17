@@ -8,22 +8,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SymmetricDS_Config_Generator.Properties
-{
-
-
+namespace SymmetricDS_Config_Generator.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>MySQL|com.mysql.jdbc.Driver|jdbc:mysql://&lt;server&gt;:&lt;port&gt;/&lt;database&gt;?tinyInt1isBit=false</string>
+  <string>Oracle|oracle.jdbc.driver.OracleDriver|jdbc:oracle:thin:@&lt;server&gt;:&lt;port&gt;:&lt;database&gt;</string>
+  <string>PostgreSQL|org.postgresql.Driver|jdbc:postgresql://&lt;server&gt;:&lt;port&gt;/&lt;database&gt;?stringtype=unspecified</string>
+  <string>Apache Derby|org.apache.derby.jdbc.EmbeddedDriver|jdbc:derby:&lt;database&gt;;create=true</string>
+  <string>HSQLDB|org.jsqldb.jdbcDriver|jdbc:hsqldb:file:&lt;database&gt;;shutdown=true</string>
+  <string>Microsoft SQL Server|net.sourceforge.jtds.jdbc.Driver|jdbc:jtds:sqlserver://&lt;server&gt;:&lt;port&gt;;userCursors=true;bufferMaxMemory=10240;lobBuffer=5242880</string>
+  <string>IBM DB2|com.ibm.db2.jcc.DB2Driver|jdbc:db2://&lt;server&gt;:&lt;port&gt;/&lt;database&gt;</string>
+  <string>IBM Informix|com.informix|jdbc.IfxDriver|jdbc:informix-sqli://&lt;server&gt;:&lt;post&gt;/&lt;database&gt;:INFORMIXSERVER=ol_ids_1150_1</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DBDrivers {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DBDrivers"]));
             }
         }
     }
