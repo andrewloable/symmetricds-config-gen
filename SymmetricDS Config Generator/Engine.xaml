@@ -26,17 +26,17 @@
         <TextBox x:Name="txtJDBCURL" Height="23" Margin="190,73,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy2" Content="Database User Name :" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy3" Content="Database Password :" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkIsRootNode" Content="Root Node" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_Copy4" Content="Registration URL :" HorizontalAlignment="Left" Margin="10,188,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_Copy5" Content="Sync URL :" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkIsRootNode" Content="Root Node" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Checked="root_node_checkbox" Unchecked="root_node_checkbox"/>
+        <Label x:Name="lblRegURL" Content="Registration URL :" HorizontalAlignment="Left" Margin="10,188,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblSyncURL" Content="Sync URL :" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
         <Label x:Name="label_Copy6" Content="Node Group :" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Add" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnAdd" Content="Add" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Bottom" Click="BtnAdd_Click"/>
         <TextBox x:Name="txtDBUserName" Height="23" Margin="190,103,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <PasswordBox x:Name="txtDBPassword" Margin="190,131,10,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cmbNodeGroup" Margin="190,249,10,0" VerticalAlignment="Top" SelectedIndex="0">
         </ComboBox>
         <TextBox x:Name="txtRegURL" Height="23" Margin="190,189,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtSyncURL" Height="23" Margin="190,220,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSyncURL" Height="23" Margin="190,220,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Collapsed"/>
         <Label x:Name="label_Copy7" Content="External ID :" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtExternalID" Height="23" Margin="190,284,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 

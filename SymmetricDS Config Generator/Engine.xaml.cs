@@ -55,5 +55,75 @@ namespace SymmetricDS_Config_Generator
                 txtJDBCURL.Text = o.URL;
             }            
         }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtEngineName.Text)
+                && !string.IsNullOrEmpty(txtJDBCURL.Text)
+                && !string.IsNullOrEmpty(txtDBUserName.Text)
+                && !string.IsNullOrEmpty(txtDBPassword.Password)
+                && !string.IsNullOrEmpty(txtExternalID.Text)
+                && cmbDatabase.SelectedIndex >= 0
+                && cmbNodeGroup.SelectedIndex >= 0)
+            {
+                if ((bool)chkIsRootNode.IsChecked && !string.IsNullOrEmpty(txtSyncURL.Text))
+                {
+                    //process root node
+                    if (!string.IsNullOrEmpty(models.AppState.State.RootEngine.EngineName))
+                        if (MessageBox.Show("Root Node Engine Already Defined. Replace?", "Replace Root Node", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                            return;
+
+                    models.AppState.State.RootEngine = new models.Engine()
+                    {
+                        EngineName = txtEngineName.Text,
+                        DBDriver = cmbDatabase.SelectedItem.ToString(),
+                        JDBCURL = txtJDBCURL.Text,
+                        DBUserName = txtDBUserName.Text,
+                        DBPassword = txtDBPassword.Password,
+                        SyncURL = txtSyncURL.Text,
+                        Group = cmbNodeGroup.SelectedItem.ToString(),
+                        ExternalID = txtExternalID.Text
+                    };
+                    this.Close();
+                } else if (!(bool)chkIsRootNode.IsChecked && !string.IsNullOrEmpty(txtRegURL.Text))
+                {
+                    //process not root nodes
+                    var eng = new models.Engine()
+                    {
+                        EngineName = txtEngineName.Text,
+                        DBDriver = cmbDatabase.SelectedItem.ToString(),
+                        JDBCURL = txtJDBCURL.Text,
+                        DBUserName = txtDBUserName.Text,
+                        DBPassword = txtDBPassword.Password,
+                        RegistrationURL = txtRegURL.Text,
+                        Group = cmbNodeGroup.SelectedItem.ToString(),
+                        ExternalID = txtExternalID.Text
+                    };
+                    var exists = (from r in models.AppState.State.ClientEngines where r.EngineName == eng.EngineName select r).FirstOrDefault();
+                    if (exists != null)
+                    {
+                        MessageBox.Show("Engine Already Exists", "Already Exists", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        models.AppState.State.ClientEngines.Add(eng);
+                        this.Close();
+                    }
+                }
+            }
+        }
+
+        private void root_node_checkbox(object sender, RoutedEventArgs e)
+        {
+            if ((bool)chkIsRootNode.IsChecked)
+            {
+                txtRegURL.Visibility = lblRegURL.Visibility = Visibility.Collapsed;
+                txtSyncURL.Visibility = lblSyncURL.Visibility = Visibility.Visible;
+            } else
+            {
+                txtRegURL.Visibility = lblRegURL.Visibility = Visibility.Visible;
+                txtSyncURL.Visibility = lblSyncURL.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

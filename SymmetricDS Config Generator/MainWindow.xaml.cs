@@ -24,6 +24,7 @@ namespace SymmetricDS_Config_Generator
         {
             InitializeComponent();
             models.AppState.State = new models.AppState();
+            models.AppState.State.RootEngine = new models.Engine();
             models.AppState.State.GroupLinks = new List<models.GroupLink>();
             models.AppState.State.Channels = new List<string>();
             models.AppState.State.ClientEngines = new List<models.Engine>();
@@ -50,6 +51,14 @@ namespace SymmetricDS_Config_Generator
         {
             var frm = new Engine();
             frm.ShowDialog();
+            lstEngines.Items.Clear();
+            if (!string.IsNullOrEmpty(models.AppState.State.RootEngine.EngineName))
+                lstEngines.Items.Add(models.AppState.State.RootEngine.EngineName + " [ROOT]");
+            models.AppState.State.ClientEngines = models.AppState.State.ClientEngines.OrderBy(r => r.EngineName).ToList();
+            foreach(var o in models.AppState.State.ClientEngines)
+            {
+                lstEngines.Items.Add(o.EngineName);
+            }
         }
 
         private void BtnAddRouter_Click(object sender, RoutedEventArgs e)
