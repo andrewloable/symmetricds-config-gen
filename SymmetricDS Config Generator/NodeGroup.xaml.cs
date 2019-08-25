@@ -19,36 +19,47 @@ namespace SymmetricDS_Config_Generator
     /// </summary>
     public partial class NodeGroup : Window
     {
-        private string obj { get; set; }
+        private string obj, old;
+        private bool isEditMode;
         public NodeGroup()
         {
             InitializeComponent();
             obj = "";
+            isEditMode = false;
         }
 
         public NodeGroup(string grp)
         {
             InitializeComponent();
             obj = grp;
+            old = grp;
+            isEditMode = true;
             txtGroup.Text = obj;
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            txtGroup.Focus();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtGroup.Text))
             {
-                var grp = txtGroup.Text;
-                var exists = (from r in models.AppState.State.NodeGroups where r.ToLower() == grp.ToLower() select r).FirstOrDefault();
+                obj = txtGroup.Text;
+                var exists = (from r in models.AppState.State.NodeGroups where r.ToLower() == obj.ToLower() select r).FirstOrDefault();
                 if (exists != null)
                 {
                     MessageBox.Show("Node Group Already Exists", "Already Exists", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    models.AppState.State.NodeGroups.Add(grp);
+                    if (isEditMode)
+                        models.AppState.State.NodeGroups.Remove(old);
+                    models.AppState.State.NodeGroups.Add(obj);
                     this.Close();
                 }
-            }            
+            }
         }
     }
 }

@@ -19,18 +19,24 @@ namespace SymmetricDS_Config_Generator
     /// </summary>
     public partial class Engine : Window
     {
-        private models.Engine obj { get; set; }
+        private models.Engine obj;
+        private bool isRootNode;
+        private bool isEditMode;
         public Engine()
         {
             InitializeComponent();
             obj = new models.Engine();
+            isEditMode = false;
+            isRootNode = false;
             Load();
         }
 
-        public Engine(models.Engine engine)
+        public Engine(models.Engine engine, bool isRoot)
         {
             InitializeComponent();
             obj = engine;
+            isEditMode = true;
+            isRootNode = isRoot;
             Load();
         }
 
@@ -45,6 +51,15 @@ namespace SymmetricDS_Config_Generator
             foreach (var o in models.AppState.State.NodeGroups)
                 cmbNodeGroup.Items.Add(o);
             cmbNodeGroup.SelectedIndex = 0;
+
+            chkIsRootNode.IsChecked = isRootNode;
+            txtEngineName.Text = obj.EngineName;
+            txtJDBCURL.Text = obj.JDBCURL;
+            txtDBUserName.Text = obj.DBUserName;
+            txtDBPassword.Password = obj.DBPassword;
+            txtRegURL.Text = obj.RegistrationURL;
+            txtSyncURL.Text = obj.SyncURL;
+            txtExternalID.Text = obj.ExternalID;
         }
 
         private void CmbDatabase_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,30 +100,23 @@ namespace SymmetricDS_Config_Generator
                         ExternalID = txtExternalID.Text
                     };
                     this.Close();
-                } else if (!(bool)chkIsRootNode.IsChecked && !string.IsNullOrEmpty(txtRegURL.Text))
+                }
+                else if (!(bool)chkIsRootNode.IsChecked && !string.IsNullOrEmpty(txtRegURL.Text))
                 {
-                    //process not root nodes
-                    var eng = new models.Engine()
-                    {
-                        EngineName = txtEngineName.Text,
-                        DBDriver = cmbDatabase.SelectedItem.ToString(),
-                        JDBCURL = txtJDBCURL.Text,
-                        DBUserName = txtDBUserName.Text,
-                        DBPassword = txtDBPassword.Password,
-                        RegistrationURL = txtRegURL.Text,
-                        Group = cmbNodeGroup.SelectedItem.ToString(),
-                        ExternalID = txtExternalID.Text
-                    };
-                    var exists = (from r in models.AppState.State.ClientEngines where r.EngineName == eng.EngineName select r).FirstOrDefault();
-                    if (exists != null)
-                    {
-                        MessageBox.Show("Engine Already Exists", "Already Exists", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        models.AppState.State.ClientEngines.Add(eng);
-                        this.Close();
-                    }
+                    //process non root nodes
+                    obj.EngineName = txtEngineName.Text;
+                    obj.DBDriver = cmbDatabase.SelectedItem.ToString();
+                    obj.JDBCURL = txtJDBCURL.Text;
+                    obj.DBUserName = txtDBUserName.Text;
+                    obj.DBPassword = txtDBPassword.Password;
+                    obj.RegistrationURL = txtRegURL.Text;
+                    obj.Group = cmbNodeGroup.SelectedItem.ToString();
+                    obj.ExternalID = txtExternalID.Text;
+
+                    if (!isEditMode)
+                        models.AppState.State.ClientEngines.Add(obj);
+
+                    this.Close();
                 }
             }
         }
@@ -117,13 +125,23 @@ namespace SymmetricDS_Config_Generator
         {
             if ((bool)chkIsRootNode.IsChecked)
             {
-                txtRegURL.Visibility = lblRegURL.Visibility = Visibility.Collapsed;
+                txtRegURL.Visibility = lblRegURL.Visibility = Visibility.Collapsed;                
                 txtSyncURL.Visibility = lblSyncURL.Visibility = Visibility.Visible;
+                txtSyncURL.Text = "http://localhost:31415/sync/" + txtEngineName.Text + "-" + txtExternalID.Text;
+                txtRegURL.Text = "";
             } else
             {
                 txtRegURL.Visibility = lblRegURL.Visibility = Visibility.Visible;
                 txtSyncURL.Visibility = lblSyncURL.Visibility = Visibility.Collapsed;
+                txtSyncURL.Text = "";
+                txtRegURL.Text = models.AppState.State.RootEngine.SyncURL;
             }
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            chkIsRootNode.IsChecked = isRootNode;
+            txtEngineName.Focus();
         }
     }
 }

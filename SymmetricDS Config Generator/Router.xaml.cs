@@ -16,11 +16,13 @@ namespace SymmetricDS_Config_Generator
 {
     public partial class Router : Window
     {
-        private models.Router obj { get; set; }
+        private models.Router obj;
+        private bool isEditMode;
         public Router()
         {
             InitializeComponent();
             obj = new models.Router();
+            isEditMode = false;
             Load();
         }
 
@@ -28,6 +30,7 @@ namespace SymmetricDS_Config_Generator
         {
             InitializeComponent();
             obj = lnk;
+            isEditMode = true;
             Load();
             txtRoute.Text = obj.RouterID;
             var o1 = (from r in models.AppState.State.NodeGroups where r == obj.SourceNodeGroup select r).FirstOrDefault();
@@ -61,23 +64,28 @@ namespace SymmetricDS_Config_Generator
                 && cmbSourceNode.SelectedIndex >= 0
                 && cmbTargetNode.SelectedIndex >= 0)
             {
-                var trg = new models.Router()
-                {
-                    RouterID = txtRoute.Text,
-                    SourceNodeGroup = cmbSourceNode.SelectedItem.ToString(),
-                    TargetNodeGroup = cmbTargetNode.SelectedItem.ToString()
-                };
-                var exists = (from r in models.AppState.State.Routers where r.RouterID == trg.RouterID select r).FirstOrDefault();
+
+                obj.RouterID = txtRoute.Text;
+                obj.SourceNodeGroup = cmbSourceNode.SelectedItem.ToString();
+                obj.TargetNodeGroup = cmbTargetNode.SelectedItem.ToString();
+                
+                var exists = (from r in models.AppState.State.Routers where r.RouterID == obj.RouterID select r).FirstOrDefault();
                 if (exists != null)
                 {
                     MessageBox.Show("Router Already Exists", "Already Exists", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    models.AppState.State.Routers.Add(trg);
+                    if (!isEditMode)
+                        models.AppState.State.Routers.Add(obj);
                     this.Close();
                 }
             }
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            txtRoute.Focus();
         }
     }
 }

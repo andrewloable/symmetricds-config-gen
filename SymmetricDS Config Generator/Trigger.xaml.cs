@@ -16,11 +16,13 @@ namespace SymmetricDS_Config_Generator
 {
     public partial class Trigger : Window
     {
-        private models.Trigger obj { get; set; }
+        private models.Trigger obj;
+        private bool isEditMode;
         public Trigger()
         {
             InitializeComponent();
             obj = new models.Trigger();
+            isEditMode = false;
             Load();
         }
 
@@ -28,6 +30,7 @@ namespace SymmetricDS_Config_Generator
         {
             InitializeComponent();
             obj = lnk;
+            isEditMode = true;
             Load();
             txtTableName.Text = obj.SourceTableName;
             txtTrigger.Text = obj.TriggerID;
@@ -56,23 +59,28 @@ namespace SymmetricDS_Config_Generator
                 && !string.IsNullOrEmpty(txtTableName.Text)
                 && cmbChannel.SelectedIndex >= 0)
             {
-                var trg = new models.Trigger()
-                {
-                    TriggerID = txtTrigger.Text,
-                    SourceTableName = txtTableName.Text,
-                    Channel = cmbChannel.SelectedItem.ToString()
-                };
-                var exists = (from r in models.AppState.State.Triggers where r.TriggerID == trg.TriggerID select r).FirstOrDefault();
+
+                obj.TriggerID = txtTrigger.Text;
+                obj.SourceTableName = txtTableName.Text;
+                obj.Channel = cmbChannel.SelectedItem.ToString();
+                
+                var exists = (from r in models.AppState.State.Triggers where r.TriggerID == obj.TriggerID select r).FirstOrDefault();
                 if (exists != null)
                 {
                     MessageBox.Show("Trigger Already Exists", "Already Exists", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    models.AppState.State.Triggers.Add(trg);
+                    if (!isEditMode)
+                        models.AppState.State.Triggers.Add(obj);
                     this.Close();
                 }
             }            
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            txtTableName.Focus();
         }
     }
 }

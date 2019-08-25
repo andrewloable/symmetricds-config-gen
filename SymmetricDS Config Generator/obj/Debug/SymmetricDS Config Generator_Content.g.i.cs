@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("loable%20tech%20logo.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/root_properties.txt")]
 
 

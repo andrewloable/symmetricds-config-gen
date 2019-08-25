@@ -15,10 +15,10 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"     MinWidth="350"    
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen">
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
     <Grid>
         <Label x:Name="label" Content="Node Group :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtGroup" Height="23" Margin="103,11,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>        
-        <Button x:Name="btnAdd" Content="Add" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Bottom" Click="BtnAdd_Click"/>
+        <Button x:Name="btnAdd" Content="Save" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="32" VerticalAlignment="Bottom" Click="BtnAdd_Click"/>
     </Grid>
 </Window>

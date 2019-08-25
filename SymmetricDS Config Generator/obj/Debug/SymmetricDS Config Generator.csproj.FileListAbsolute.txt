@@ -53,4 +53,3 @@ D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug
 D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Router.g.cs
 D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Router.baml
 D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Trigger.baml
-D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator.csprojAssemblyReference.cache

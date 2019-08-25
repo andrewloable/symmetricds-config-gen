@@ -16,11 +16,13 @@ namespace SymmetricDS_Config_Generator
 {
     public partial class NodeGroupLink : Window
     {
-        private models.GroupLink obj { get; set; }
+        private models.GroupLink obj;
+        private bool isEditMode;
         public NodeGroupLink()
         {
             InitializeComponent();
             obj = new models.GroupLink();
+            isEditMode = false;
             Load();
         }
 
@@ -28,6 +30,7 @@ namespace SymmetricDS_Config_Generator
         {
             InitializeComponent();
             obj = lnk;
+            isEditMode = true;
             Load();
             var o1 = (from r in models.AppState.State.NodeGroups where r == obj.SourceNodeGroup select r).FirstOrDefault();
             if (o1 != null)
@@ -44,7 +47,7 @@ namespace SymmetricDS_Config_Generator
         private void Load()
         {
             cmbSourceNodeGroup.Items.Clear();
-            cmbTargetNodeGroup.Items.Clear();            
+            cmbTargetNodeGroup.Items.Clear();
             if (models.AppState.State.NodeGroups.Count > 0)
             {
                 models.AppState.State.NodeGroups = (from r in models.AppState.State.NodeGroups select r).OrderBy(r => r).ToList();
@@ -64,23 +67,25 @@ namespace SymmetricDS_Config_Generator
                 && cmbSourceNodeGroup.SelectedIndex >= 0
                 && cmbTargetNodeGroup.SelectedIndex >= 0)
             {
-                var grplnk = new models.GroupLink()
-                {
-                    SourceNodeGroup = cmbSourceNodeGroup.SelectedItem.ToString(),
-                    TargetNodeGroup = cmbTargetNodeGroup.SelectedItem.ToString(),
-                    DataEventAction = (cmbAction.SelectedItem.ToString() == "PUSH" ? models.GroupLink.Action.P : models.GroupLink.Action.W)
-                };
-                var exists = (from r in models.AppState.State.GroupLinks where r.Hash == grplnk.Hash select r).FirstOrDefault();
+
+                obj.SourceNodeGroup = cmbSourceNodeGroup.SelectedItem.ToString();
+                obj.TargetNodeGroup = cmbTargetNodeGroup.SelectedItem.ToString();
+                obj.DataEventAction = (cmbAction.SelectedItem.ToString() == "PUSH" ? models.GroupLink.Action.P : models.GroupLink.Action.W);
+
+                var exists = (from r in models.AppState.State.GroupLinks where r.Hash == obj.Hash select r).FirstOrDefault();
                 if (exists != null)
                 {
                     MessageBox.Show("Node Group Link Already Exists", "Already Exists", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                else
-                {
-                    models.AppState.State.GroupLinks.Add(grplnk);
-                    this.Close();
-                }
-            }            
+                if (!isEditMode)
+                    models.AppState.State.GroupLinks.Add(obj);
+                this.Close();
+            }
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            cmbSourceNodeGroup.Focus();
         }
     }
 }

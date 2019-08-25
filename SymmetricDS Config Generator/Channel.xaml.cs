@@ -19,33 +19,44 @@ namespace SymmetricDS_Config_Generator
     /// </summary>
     public partial class Channel : Window
     {
-        private string obj { get; set; }
+        private string obj, old;
+        private bool isEditMode;
         public Channel()
         {
             InitializeComponent();
             obj = "";
+            isEditMode = false;
         }
 
         public Channel(string chan)
         {
             InitializeComponent();
             obj = chan;
+            old = chan;
+            isEditMode = true;
             txtChannelName.Text = obj;
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            txtChannelName.Focus();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtChannelName.Text))
             {
-                var chan = txtChannelName.Text;
-                var exists = (from r in models.AppState.State.Channels where r.ToLower() == chan.ToLower() select r).FirstOrDefault();
+                obj = txtChannelName.Text;
+                var exists = (from r in models.AppState.State.Channels where r.ToLower() == obj.ToLower() select r).FirstOrDefault();
                 if (exists != null)
                 {
                     MessageBox.Show("Channel Already Exists", "Already Exists", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    models.AppState.State.Channels.Add(chan);
+                    if (isEditMode)
+                        models.AppState.State.Channels.Remove(old);
+                    models.AppState.State.Channels.Add(obj);
                     this.Close();
                 }
             }            

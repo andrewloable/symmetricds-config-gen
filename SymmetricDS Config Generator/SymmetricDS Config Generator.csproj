@@ -155,5 +155,11 @@
   <ItemGroup>
     <Resource Include="loable tech logo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="templates\root_properties.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="templates\client_properties.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,15 @@
+﻿engine.name=corp-000
+db.driver=<db_driver>
+db.url=<jdbc_url>
+db.user=<db_user>
+db.password=<db_password>
+registration.url=
+sync.url=<sync_url>
+group.id=<node_group>
+external.id=<external_id>
+job.purge.period.time.ms=7200000
+job.routing.period.time.ms=5000
+job.push.period.time.ms=10000
+job.pull.period.time.ms=10000
+auto.registration=true
+initial.load.create.first=true
