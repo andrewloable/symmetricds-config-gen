@@ -30,15 +30,93 @@ namespace SymmetricDS_Config_Generator.Properties {
   <string>MySQL|com.mysql.jdbc.Driver|jdbc:mysql://&lt;server&gt;:&lt;port&gt;/&lt;database&gt;?tinyInt1isBit=false</string>
   <string>Oracle|oracle.jdbc.driver.OracleDriver|jdbc:oracle:thin:@&lt;server&gt;:&lt;port&gt;:&lt;database&gt;</string>
   <string>PostgreSQL|org.postgresql.Driver|jdbc:postgresql://&lt;server&gt;:&lt;port&gt;/&lt;database&gt;?stringtype=unspecified</string>
-  <string>Apache Derby|org.apache.derby.jdbc.EmbeddedDriver|jdbc:derby:&lt;database&gt;;create=true</string>
-  <string>HSQLDB|org.jsqldb.jdbcDriver|jdbc:hsqldb:file:&lt;database&gt;;shutdown=true</string>
   <string>Microsoft SQL Server|net.sourceforge.jtds.jdbc.Driver|jdbc:jtds:sqlserver://&lt;server&gt;:&lt;port&gt;;userCursors=true;bufferMaxMemory=10240;lobBuffer=5242880</string>
-  <string>IBM DB2|com.ibm.db2.jcc.DB2Driver|jdbc:db2://&lt;server&gt;:&lt;port&gt;/&lt;database&gt;</string>
-  <string>IBM Informix|com.informix|jdbc.IfxDriver|jdbc:informix-sqli://&lt;server&gt;:&lt;post&gt;/&lt;database&gt;:INFORMIXSERVER=ol_ids_1150_1</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection DBDrivers {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["DBDrivers"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>sym_trigger_router</string>
+  <string>sym_trigger</string>
+  <string>sym_router</string>
+  <string>sym_node_group_link</string>
+  <string>sym_node_group</string>
+  <string>sym_node_host</string>
+  <string>sym_node_identity</string>
+  <string>sym_node_security</string>
+  <string>sym_node</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DeleteTables {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DeleteTables"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("insert into sym_channel (channel_id, processing_order, max_batch_size, enabled, d" +
+            "escription) values (\'<channel>\', 1, 100000, 1, \'<channel>\');")]
+        public string InsertChannelCommand {
+            get {
+                return ((string)(this["InsertChannelCommand"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("insert into sym_node_group (node_group_id) values (\'<node_group>\');")]
+        public string InsertNodeGroupCommand {
+            get {
+                return ((string)(this["InsertNodeGroupCommand"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("insert into sym_node_group_link (source_node_group_id, target_node_group_id, data" +
+            "_event_action) values (\'<src_node>\', \'<tgt_node>\', \'<action>\');")]
+        public string InsertNodeGroupLinkCommand {
+            get {
+                return ((string)(this["InsertNodeGroupLinkCommand"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("insert into sym_trigger (trigger_id, source_table_name, channel_id, last_update_t" +
+            "ime, create_time) values (\'<trigger>\', \'<table_name>\', \'<channel>\', current_time" +
+            "stamp, current_timestamp);")]
+        public string InsertTriggerCommand {
+            get {
+                return ((string)(this["InsertTriggerCommand"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("insert into sym_router (router_id, source_node_group_id, target_node_group_id, ro" +
+            "uter_type, create_time, last_update_time) values (\'<router>\', \'<src_node>\', \'<tg" +
+            "t_node>\', \'default\', current_timestamp, current_timestamp);")]
+        public string InsertRouterCommand {
+            get {
+                return ((string)(this["InsertRouterCommand"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("insert into sym_trigger_router (trigger_id, router_id, initial_load_order, last_u" +
+            "pdate_time, create_time) values (\'<trigger>\', \'<router>\', 100, current_timestamp" +
+            ", current_timestamp);")]
+        public string InsertTriggerRouterCommand {
+            get {
+                return ((string)(this["InsertTriggerRouterCommand"]));
             }
         }
     }

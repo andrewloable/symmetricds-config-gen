@@ -9,5 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/root_properties.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/client_properties.txt")]
 
 

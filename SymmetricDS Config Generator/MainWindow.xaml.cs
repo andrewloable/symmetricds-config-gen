@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -283,7 +285,82 @@ namespace SymmetricDS_Config_Generator
 
         private void BtnGenerate_Click(object sender, RoutedEventArgs e)
         {
+            var frm = new System.Windows.Forms.FolderBrowserDialog();
+            frm.Description = "Select the folder where to generate the configuration files.";
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // process root engine config file
+                var rootPropertiesContent = File.ReadAllText("templates\\root_properties.txt");
+                rootPropertiesContent = rootPropertiesContent.Replace("<engine_name>", models.AppState.State.RootEngine.EngineName)
+                    .Replace("<db_driver>", models.AppState.State.RootEngine.DBDriver)
+                    .Replace("<jdbc_url>", models.AppState.State.RootEngine.JDBCURL)
+                    .Replace("<db_user>", models.AppState.State.RootEngine.DBUserName)
+                    .Replace("<db_password>", models.AppState.State.RootEngine.DBPassword)
+                    .Replace("<sync_url>", models.AppState.State.RootEngine.SyncURL)
+                    .Replace("<node_group>", models.AppState.State.RootEngine.Group)
+                    .Replace("<external_id>", models.AppState.State.RootEngine.ExternalID);
 
+                var rootPropertiesPath = System.IO.Path.Combine(frm.SelectedPath, models.AppState.State.RootEngine.EngineName + ".properties");
+                File.WriteAllText(rootPropertiesPath, rootPropertiesContent);
+
+                // process client engine config files
+                foreach (var client in models.AppState.State.ClientEngines)
+                {
+                    var clientPropertiesContent = File.ReadAllText("templates\\client_properties.txt");
+                    clientPropertiesContent = clientPropertiesContent.Replace("<engine_name>", client.EngineName)
+                    .Replace("<db_driver>", client.DBDriver)
+                    .Replace("<jdbc_url>", client.JDBCURL)
+                    .Replace("<db_user>", client.DBUserName)
+                    .Replace("<db_password>", client.DBPassword)
+                    .Replace("<reg_url>", client.RegistrationURL)
+                    .Replace("<node_group>", client.Group)
+                    .Replace("<external_id>", client.ExternalID);
+
+                    var clientPropertiesPath = System.IO.Path.Combine(frm.SelectedPath, client.EngineName + ".properties");
+                    File.WriteAllText(clientPropertiesPath, clientPropertiesContent);
+                }
+
+                // generate sql for root node
+                StringBuilder sql = new StringBuilder();
+                // tables to clear
+                foreach(var s in Properties.Settings.Default.DeleteTables)
+                    sql.Append(string.Format("delete from {0};", s)).Append(Environment.NewLine);
+                // channels
+                foreach(var ch in models.AppState.State.Channels)
+                    sql.Append(Properties.Settings.Default.InsertChannelCommand.Replace("<channel>", ch)).Append(Environment.NewLine);
+                // node groups
+                foreach (var ng in models.AppState.State.NodeGroups)
+                    sql.Append(Properties.Settings.Default.InsertNodeGroupCommand.Replace("<node_group>", ng)).Append(Environment.NewLine);
+                // node group links
+                foreach (var ngl in models.AppState.State.GroupLinks)
+                    sql.Append(Properties.Settings.Default.InsertNodeGroupLinkCommand
+                        .Replace("<src_node>", ngl.SourceNodeGroup)
+                        .Replace("<tgt_node>", ngl.TargetNodeGroup)
+                        .Replace("<action>", ngl.DataEventAction.ToString())).Append(Environment.NewLine);
+                // triggers
+                foreach (var t in models.AppState.State.Triggers)
+                    sql.Append(Properties.Settings.Default.InsertTriggerCommand
+                        .Replace("<trigger>", t.TriggerID)
+                        .Replace("<table_name>", t.SourceTableName)
+                        .Replace("<channel>", t.Channel)).Append(Environment.NewLine);
+                // routers
+                foreach (var r in models.AppState.State.Routers)
+                    sql.Append(Properties.Settings.Default.InsertRouterCommand
+                        .Replace("<router>", r.RouterID)
+                        .Replace("<src_node>", r.SourceNodeGroup)
+                        .Replace("<tgt_node>", r.TargetNodeGroup)).Append(Environment.NewLine);
+                // trigger routers
+                foreach (var r in models.AppState.State.Routers)
+                    foreach (var t in models.AppState.State.Triggers)
+                        sql.Append(Properties.Settings.Default.InsertTriggerRouterCommand
+                            .Replace("<trigger>", t.TriggerID)
+                            .Replace("<router>", r.RouterID)).Append(Environment.NewLine);
+
+                var sqlPath = System.IO.Path.Combine(frm.SelectedPath, "sql_commands.sql");
+                File.WriteAllText(sqlPath, sql.ToString());
+
+                MessageBox.Show("Configuration and Root Node SQL Script has been generated in " + frm.SelectedPath, "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

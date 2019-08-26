@@ -53,3 +53,6 @@ D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug
 D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Router.g.cs
 D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Router.baml
 D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\Trigger.baml
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\templates\root_properties.txt
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\bin\Debug\templates\client_properties.txt
+D:\Projects\dotnet\symmetricds-config-gen\SymmetricDS Config Generator\obj\Debug\SymmetricDS Config Generator_Content.g.cs

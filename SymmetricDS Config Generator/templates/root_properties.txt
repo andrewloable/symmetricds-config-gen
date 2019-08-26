@@ -1,4 +1,4 @@
-﻿engine.name=corp-000
+﻿engine.name=<engine_name>
 db.driver=<db_driver>
 db.url=<jdbc_url>
 db.user=<db_user>
